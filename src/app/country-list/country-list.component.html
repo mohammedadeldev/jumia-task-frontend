@@ -1,0 +1,39 @@
+<div style="margin-left: 600px">
+  <mat-form-field>
+    <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Click To Filter By Any Field">
+  </mat-form-field>
+
+</div>
+
+<mat-table [dataSource]="dataSource" matSort>
+  <ng-container matColumnDef="country">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Country</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.country}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="state">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>State</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.state}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="code">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Country Code</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.code}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="phone">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Phone</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.phone}}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+<mat-paginator #paginator
+               [length]="dataSource.data.length"
+               [pageIndex]="0"
+               [pageSize]="10"
+               [pageSizeOptions]="[10,20,30,40,50]">
+
+</mat-paginator>
